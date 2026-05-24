@@ -1,0 +1,14 @@
+# Build artifacts
+*.o
+*.so
+build/
+
+# Archives
+*.zip
+*.tar.gz
+
+# Junk
+*.log
+
+# Personal launcher (path berbeda tiap orang)
+run.sh
