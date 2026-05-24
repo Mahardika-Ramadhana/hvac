@@ -7,8 +7,3 @@ Humanoid Virtual Athletics Challenge 2026 Spring
 - `controller/` — SimpleController source code
 - `field/` — Shorttrack field assets
 - `robot/` — robot_esr_v2 URDF dan meshes
-
-## Cara jalankan
-```bash
-robot   # alias untuk run.sh
-```
