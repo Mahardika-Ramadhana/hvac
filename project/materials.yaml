@@ -1,0 +1,31 @@
+materials:
+  -
+    name: Default
+    roughness: 1.0
+    viscosity: 1.0
+  -
+    name: Ground
+    roughness: 1.0
+    viscosity: 1.0
+  -
+    name: Sole
+    roughness: 1.0
+    viscosity: 1.0
+
+contact_materials:
+  -
+    materials: [ Default, Default ]
+    friction: 1.2
+    restitution: 0.0
+    youngsModulus: 1.0e9
+  -
+    materials: [ Ground, Default ]
+    friction: 1.5
+    restitution: 0.0
+    youngsModulus: 1.0e9
+  -
+    materials: [ Ground, Sole ]
+    friction: 1.5
+    restitution: 0.0
+    youngsModulus: 1.0e9
+    friction_model: [ iterative, direct ]

@@ -1,1 +1,0 @@
-add_cnoid_simple_controller(esr_controller main.cpp)
