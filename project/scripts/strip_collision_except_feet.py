@@ -23,7 +23,7 @@ def strip_collisions(text: str) -> str:
     return "".join(out)
 
 def main():
-    urdf = Path(__file__).resolve().parents[2] / "urdf" / "robot_esr_v2.urdf"
+    urdf = Path(__file__).resolve().parents[2] / "urdf" / "robot_esr_v2_rev.urdf"
     text = urdf.read_text(encoding="utf-8")
     before = text.count("<collision>")
     new_text = strip_collisions(text)

@@ -19,7 +19,7 @@ using namespace cnoid;
 //  RobotContext – shared abstraction over robot_esr_v2 (38 DOF)
 //
 //  Joint layout assumed (after URDF injection of 4 virtual root
-//  joints; see urdf/robot_esr_v2.urdf):
+//  joints; see urdf/robot_esr_v2_rev.urdf):
 //      0 : root_x_joint   (prismatic X)
 //      1 : root_y_joint   (prismatic Y)
 //      2 : root_z_joint   (prismatic Z)

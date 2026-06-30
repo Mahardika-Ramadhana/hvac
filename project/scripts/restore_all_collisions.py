@@ -4,8 +4,8 @@ from pathlib import Path
 import shutil
 
 ROOT = Path(__file__).resolve().parents[2]
-BACKUP = ROOT / "backup_before_floor_fd_20260524" / "robot_esr_v2.urdf"
-TARGET = ROOT / "urdf" / "robot_esr_v2.urdf"
+BACKUP = ROOT / "backup_before_floor_fd_20260524" / "robot_esr_v2_rev.urdf"
+TARGET = ROOT / "urdf" / "robot_esr_v2_rev.urdf"
 
 def main():
     if not BACKUP.is_file():
