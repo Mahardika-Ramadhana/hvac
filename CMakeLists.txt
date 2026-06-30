@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 
-project(robot_esr_v2)
+project(robot_esr_v2_rev)
 
 find_package(catkin REQUIRED)
 

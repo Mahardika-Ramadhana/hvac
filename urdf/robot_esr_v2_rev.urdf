@@ -1,0 +1,2004 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="robot_esr_v2_rev">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0320177364511636 0.0917082584122773 0.414834984191337"
+        rpy="0 0 0" />
+      <mass
+        value="8.5" />
+      <inertia
+        ixx="0.00130870623525641"
+        ixy="3.53640853218352E-06"
+        ixz="-4.78758868977005E-11"
+        iyy="0.00296520312696513"
+        iyz="-2.52026599335997E-09"
+        izz="0.00224673444361861" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="right_knee_yaw_2">
+    <inertial>
+      <origin
+        xyz="-9.14116576877788E-09 -0.0212030724133625 -0.000549836112362728"
+        rpy="0 0 0" />
+      <mass
+        value="0.3" />
+      <inertia
+        ixx="0.000127817319431781"
+        ixy="-3.78034630703217E-12"
+        ixz="2.32028197764191E-09"
+        iyy="0.000131683270697395"
+        iyz="-2.54507822341063E-07"
+        izz="4.9622831525886E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_yaw_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_yaw_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_knee_yaw_2"
+    type="continuous">
+    <origin
+      xyz="-0.062687493744489 0.079702441043673 0.324628981831047"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_knee_yaw_2" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="right_knee_roll_2">
+    <inertial>
+      <origin
+        xyz="0.000199461439074192 -2.4307394985712E-10 -0.0668334209071521"
+        rpy="0 0 0" />
+      <mass
+        value="1.1" />
+      <inertia
+        ixx="0.000488223826066164"
+        ixy="-3.92142412068505E-12"
+        ixz="-4.18131988512594E-06"
+        iyy="0.000469775042973764"
+        iyz="3.9179567122877E-12"
+        izz="0.000168765726366909" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_roll_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_roll_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_knee_roll_2"
+    type="revolute">
+    <origin
+      xyz="0 -0.075 0.0635"
+      rpy="0 0 0" />
+    <parent
+      link="right_knee_yaw_2" />
+    <child
+      link="right_knee_roll_2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_knee_pitch_2">
+    <inertial>
+      <origin
+        xyz="-0.0560734707503283 -0.173077643429645 0.0115438498779585"
+        rpy="0 0 0" />
+      <mass
+        value="2.0" />
+      <inertia
+        ixx="0.00203317485341977"
+        ixy="-6.7686236671143E-06"
+        ixz="-1.16254990385324E-06"
+        iyy="0.00109415475388276"
+        iyz="0.000165857851604364"
+        izz="0.00240957900807176" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_pitch_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_pitch_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_knee_pitch_2"
+    type="revolute">
+    <origin
+      xyz="0.03 0 -0.0755"
+      rpy="0 0 0" />
+    <parent
+      link="right_knee_roll_2" />
+    <child
+      link="right_knee_pitch_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_knee_pitch_4">
+    <inertial>
+      <origin
+        xyz="-0.0645776005941406 -0.173676937109752 -0.0232634740131645"
+        rpy="0 0 0" />
+      <mass
+        value="1.2" />
+      <inertia
+        ixx="0.00137391625427331"
+        ixy="1.75762575681254E-05"
+        ixz="6.94596148270738E-07"
+        iyy="0.000799356646118651"
+        iyz="6.19624066727838E-05"
+        izz="0.00156571865341765" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_pitch_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_pitch_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_knee_pitch_4"
+    type="revolute">
+    <origin
+      xyz="0.0095 -0.2983565686105 0.0313585389803"
+      rpy="0 0 0" />
+    <parent
+      link="right_knee_pitch_2" />
+    <child
+      link="right_knee_pitch_4" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_knee_pitch_6">
+    <inertial>
+      <origin
+        xyz="-0.0441054138408042 0.000392268583459365 0.00748491838273713"
+        rpy="0 0 0" />
+      <mass
+        value="0.5" />
+      <inertia
+        ixx="0.000489829889049263"
+        ixy="-2.18829129103133E-07"
+        ixz="-4.17558961464294E-06"
+        iyy="0.000469338580375331"
+        iyz="-1.57747419347536E-05"
+        izz="0.000169165535009898" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_pitch_6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_pitch_6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_knee_pitch_6"
+    type="revolute">
+    <origin
+      xyz="0.0054 -0.299588860426366 -0.0157007868728399"
+      rpy="0 0 0" />
+    <parent
+      link="right_knee_pitch_4" />
+    <child
+      link="right_knee_pitch_6" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_knee_roll_6">
+    <inertial>
+      <origin
+        xyz="-0.00877551300175683 -0.0994360449284384 -0.0685529813517118"
+        rpy="0 0 0" />
+      <mass
+        value="0.7" />
+      <inertia
+        ixx="0.00179590396242748"
+        ixy="-7.39342634066645E-06"
+        ixz="3.87413701535552E-07"
+        iyy="0.00250246847092562"
+        iyz="-8.91027341566516E-05"
+        izz="0.000800345696048902" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_roll_6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_knee_roll_6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_knee_roll_6"
+    type="revolute">
+    <origin
+      xyz="-0.0449 0.00396953513345899 0.0758962701976469"
+      rpy="0 0 0" />
+    <parent
+      link="right_knee_pitch_6" />
+    <child
+      link="right_knee_roll_6" />
+    <axis
+      xyz="0 -0.0539354644565491 -0.998544423485433" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_knee_yaw_1">
+    <inertial>
+      <origin
+        xyz="-9.14116575490009E-09 -0.0212030724133625 -0.000549836112362728"
+        rpy="0 0 0" />
+      <mass
+        value="0.3" />
+      <inertia
+        ixx="0.000127817319431781"
+        ixy="-3.78034631307514E-12"
+        ixz="2.32028197764481E-09"
+        iyy="0.000131683270697396"
+        iyz="-2.54507822341067E-07"
+        izz="4.9622831525886E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_yaw_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_yaw_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_knee_yaw_1"
+    type="continuous">
+    <origin
+      xyz="0.123312506255511 0.079702441043673 0.324628981831047"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_knee_yaw_1" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="left_knee_roll_1">
+    <inertial>
+      <origin
+        xyz="-0.000199461302324316 4.0195408113064E-10 -0.0668334212991907"
+        rpy="0 0 0" />
+      <mass
+        value="1.1" />
+      <inertia
+        ixx="0.000488223818470472"
+        ixy="-3.07401873345465E-12"
+        ixz="4.18131769076044E-06"
+        iyy="0.000469775035635397"
+        iyz="-6.47041005336953E-12"
+        izz="0.000168765724652978" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_roll_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_roll_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_knee_roll_1"
+    type="revolute">
+    <origin
+      xyz="0 -0.075 0.0635"
+      rpy="0 0 0" />
+    <parent
+      link="left_knee_yaw_1" />
+    <child
+      link="left_knee_roll_1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_knee_pitch_1">
+    <inertial>
+      <origin
+        xyz="0.0559741664227049 -0.172670639450367 0.011498855021244"
+        rpy="0 0 0" />
+      <mass
+        value="2.0" />
+      <inertia
+        ixx="0.00203376131948809"
+        ixy="6.46258546849025E-06"
+        ixz="1.83434883445587E-06"
+        iyy="0.00109445241096865"
+        iyz="0.000164908899709386"
+        izz="0.00240987665792666" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_pitch_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_pitch_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_knee_pitch_1"
+    type="revolute">
+    <origin
+      xyz="-0.03 0 -0.0755"
+      rpy="0 0 0" />
+    <parent
+      link="left_knee_roll_1" />
+    <child
+      link="left_knee_pitch_1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_knee_pitch_3">
+    <inertial>
+      <origin
+        xyz="-0.0319223918438868 -0.17367703745546 -0.0232634643547871"
+        rpy="0 0 0" />
+      <mass
+        value="1.2" />
+      <inertia
+        ixx="0.00137391312538693"
+        ixy="-1.75765084793077E-05"
+        ixz="-6.9458894923823E-07"
+        iyy="0.000799355657047289"
+        iyz="6.19623220796079E-05"
+        izz="0.00156571492906411" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_pitch_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_pitch_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_knee_pitch_3"
+    type="revolute">
+    <origin
+      xyz="0.087 -0.2983565686105 0.0313585389803"
+      rpy="0 0 0" />
+    <parent
+      link="left_knee_pitch_1" />
+    <child
+      link="left_knee_pitch_3" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_knee_pitch_5">
+    <inertial>
+      <origin
+        xyz="0.0287228735205462 0.000386922565635162 0.00738291755074048"
+        rpy="0 0 0" />
+      <mass
+        value="0.5" />
+      <inertia
+        ixx="0.000491586615127106"
+        ixy="2.18829495464642E-07"
+        ixz="4.1755897530902E-06"
+        iyy="0.00047023683087024"
+        iyz="-1.57747362236969E-05"
+        izz="0.000170063784756177" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_pitch_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_pitch_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_knee_pitch_5"
+    type="revolute">
+    <origin
+      xyz="-0.087 -0.299588860426366 -0.0157007868728399"
+      rpy="0 0 0" />
+    <parent
+      link="left_knee_pitch_3" />
+    <child
+      link="left_knee_pitch_5" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_knee_roll_5">
+    <inertial>
+      <origin
+        xyz="0.00877550761396918 -0.0994439838393001 -0.0685525663819486"
+        rpy="0 0 0" />
+      <mass
+        value="0.7" />
+      <inertia
+        ixx="0.0017959052618031"
+        ixy="7.39343857103043E-06"
+        ixz="-3.87362656955103E-07"
+        iyy="0.00250246942473441"
+        iyz="-8.91041141547649E-05"
+        izz="0.000800345648895125" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_roll_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_knee_roll_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_knee_roll_5"
+    type="revolute">
+    <origin
+      xyz="0.03 0.00397753267452594 0.0758958446413009"
+      rpy="0 0 0" />
+    <parent
+      link="left_knee_pitch_5" />
+    <child
+      link="left_knee_roll_5" />
+    <axis
+      xyz="0 -0.0523359562429312 -0.998629534754574" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="body_pitch">
+    <inertial>
+      <origin
+        xyz="-0.0305574028726289 0.0389126496594178 -1.38777878078145E-17"
+        rpy="0 0 0" />
+      <mass
+        value="1.8" />
+      <inertia
+        ixx="8.0178005936947E-05"
+        ixy="9.5353400186236E-20"
+        ixz="-3.89916954698622E-20"
+        iyy="0.000280774358062241"
+        iyz="4.81295068401879E-20"
+        izz="0.000274387300985093" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/body_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.996078431372549 0.996078431372549 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/body_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="body_pitch"
+    type="revolute">
+    <origin
+      xyz="0.056985270133787 0.091856913351958 0.491628981831047"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="body_pitch" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="body_yaw">
+    <inertial>
+      <origin
+        xyz="6.41376641454562E-05 0.14960491546494 0.00111334274923562"
+        rpy="0 0 0" />
+      <mass
+        value="7.8" />
+      <inertia
+        ixx="0.00153326947252755"
+        ixy="-2.99744983652727E-06"
+        ixz="7.77891500682945E-08"
+        iyy="0.00192110166135972"
+        iyz="-3.73466974438876E-07"
+        izz="0.00292594751942605" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/body_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/body_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="body_yaw"
+    type="continuous">
+    <origin
+      xyz="-0.026673000000004 0.065500000000001 0"
+      rpy="0 0 0" />
+    <parent
+      link="body_pitch" />
+    <child
+      link="body_yaw" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_arm_pitch_2">
+    <inertial>
+      <origin
+        xyz="-0.0563960537720043 -0.00421581618218325 0.00308498551500382"
+        rpy="0 0 0" />
+      <mass
+        value="0.25" />
+      <inertia
+        ixx="6.63634182814662E-05"
+        ixy="-4.90870942658598E-06"
+        ixz="-2.53786568905901E-08"
+        iyy="5.33223878294995E-05"
+        iyz="2.19283370939965E-08"
+        izz="4.28517529016035E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_arm_pitch_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_arm_pitch_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_arm_pitch_2"
+    type="revolute">
+    <origin
+      xyz="-0.116 0.1865 0"
+      rpy="0 0 0" />
+    <parent
+      link="body_yaw" />
+    <child
+      link="right_arm_pitch_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_arm_roll_2">
+    <inertial>
+      <origin
+        xyz="-0.000140769727236617 -0.0583656778318817 -0.022892601118641"
+        rpy="0 0 0" />
+      <mass
+        value="1.1" />
+      <inertia
+        ixx="0.000701761134785862"
+        ixy="3.51428157454207E-06"
+        ixz="5.73190041883053E-11"
+        iyy="0.000504611928334948"
+        iyz="-3.51429084540073E-06"
+        izz="0.000529608111557968" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_arm_roll_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_arm_roll_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_arm_roll_2"
+    type="revolute">
+    <origin
+      xyz="-0.096 -0.039 0.027"
+      rpy="0 0 -0.2" />
+    <parent
+      link="right_arm_pitch_2" />
+    <child
+      link="right_arm_roll_2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_arm_yaw_2">
+    <inertial>
+      <origin
+        xyz="-0.00024766002411783 -0.0551148452472379 -0.00314972612962813"
+        rpy="0 0 0" />
+      <mass
+        value="0.2" />
+      <inertia
+        ixx="4.24958513712219E-05"
+        ixy="-1.24795287482208E-06"
+        ixz="-4.78865600916963E-08"
+        iyy="5.17570457040963E-05"
+        iyz="-4.10901589470382E-08"
+        izz="2.48384911141725E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_arm_yaw_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_arm_yaw_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_arm_yaw_2"
+    type="revolute">
+    <origin
+      xyz="-4.99999999987732E-05 -0.127 -0.02355"
+      rpy="0 0 0" />
+    <parent
+      link="right_arm_roll_2" />
+    <child
+      link="right_arm_yaw_2" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_arm_roll_4">
+    <inertial>
+      <origin
+        xyz="0.012383709241947 -0.0372076809952379 -0.0192399131176939"
+        rpy="0 0 0" />
+      <mass
+        value="0.75" />
+      <inertia
+        ixx="0.000484217303661817"
+        ixy="-3.35940592527774E-06"
+        ixz="2.48498565713358E-06"
+        iyy="0.000424604369560352"
+        iyz="-1.94345108096843E-06"
+        izz="0.000274229624861241" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_arm_roll_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_arm_roll_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_arm_roll_4"
+    type="revolute">
+    <origin
+      xyz="-0.0299999999999991 -0.0899999999999993 0.021000000000001"
+      rpy="0 0 0.2" />
+    <parent
+      link="right_arm_yaw_2" />
+    <child
+      link="right_arm_roll_4" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_arm_roll_6">
+    <inertial>
+      <origin
+        xyz="-4.3964371948535E-08 -0.0669453827860551 -0.0404898296856455"
+        rpy="0 0 0" />
+      <mass
+        value="0.15" />
+      <inertia
+        ixx="0.000130633827632513"
+        ixy="-2.33959591531275E-11"
+        ixz="3.6387849538788E-10"
+        iyy="0.000101201356554981"
+        iyz="3.80955907816716E-06"
+        izz="5.38094246878727E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_arm_roll_6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_arm_roll_6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_arm_roll_6"
+    type="revolute">
+    <origin
+      xyz="0.03 -0.108 0.03"
+      rpy="0 0 0" />
+    <parent
+      link="right_arm_roll_4" />
+    <child
+      link="right_arm_roll_6" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_thumb_2">
+    <inertial>
+      <origin
+        xyz="-0.00145796984257518 -0.0073334060918861 0.0090766659153649"
+        rpy="0 0 0" />
+      <mass
+        value="0.015" />
+      <inertia
+        ixx="2.07603348807424E-07"
+        ixy="6.73443560740602E-09"
+        ixz="-1.34736632823626E-08"
+        iyy="1.87782938242722E-07"
+        iyz="-6.48154437901038E-09"
+        izz="1.97504064585431E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_thumb_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_thumb_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_thumb_2"
+    type="revolute">
+    <origin
+      xyz="-0.000182112936896323 -0.0862281433963429 0.0197400302680752"
+      rpy="1.1055560657 1.1071480837 1.5690156875" />
+    <parent
+      link="right_arm_roll_6" />
+    <child
+      link="right_thumb_2" />
+    <axis
+      xyz="0 0.894427190999899 0.447213595499991" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_thumb_4">
+    <inertial>
+      <origin
+        xyz="-0.000754954728259871 -0.00847847131805735 0.0113670320132841"
+        rpy="0 0 0" />
+      <mass
+        value="0.02" />
+      <inertia
+        ixx="5.30102275865859E-07"
+        ixy="2.35163715670282E-08"
+        ixz="-4.70258129588885E-08"
+        iyy="4.61902967436636E-07"
+        iyz="8.90296928828408E-08"
+        izz="3.28328251195912E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_thumb_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_thumb_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_thumb_4"
+    type="revolute">
+    <origin
+      xyz="0 -0.0107331262919998 0.0214662525839976"
+      rpy="1.1055560657 1.1071480837 1.5690156875" />
+    <parent
+      link="right_thumb_2" />
+    <child
+      link="right_thumb_4" />
+    <axis
+      xyz="0 -0.894427190999899 -0.447213595499991" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_finger_2">
+    <inertial>
+      <origin
+        xyz="-0.00133279780265064 -0.0210004005177498 -0.00399955906761555"
+        rpy="0 0 0" />
+      <mass
+        value="0.04" />
+      <inertia
+        ixx="5.51775696394823E-06"
+        ixy="2.22395186429996E-07"
+        ixz="-8.78211389645603E-11"
+        iyy="3.41576038734395E-06"
+        iyz="-8.98474449471516E-11"
+        izz="3.64882492863171E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_finger_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_finger_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_finger_2"
+    type="revolute">
+    <origin
+      xyz="0 -0.111248350851721 -0.0410000000000039"
+      rpy="0 0 1.57" />
+    <parent
+      link="right_arm_roll_6" />
+    <child
+      link="right_finger_2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="right_finger_4">
+    <inertial>
+      <origin
+        xyz="-0.000316274058890675 -0.0247059462823676 -0.00391805862277154"
+        rpy="0 0 0" />
+      <mass
+        value="0.05" />
+      <inertia
+        ixx="1.04188303406298E-05"
+        ixy="2.88381216865677E-07"
+        ixz="-3.44118525265693E-11"
+        iyy="4.81580349620093E-06"
+        iyz="2.6210782621867E-12"
+        izz="7.89382548546812E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_finger_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/right_finger_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_finger_4"
+    type="revolute">
+    <origin
+      xyz="0 -0.0395 0"
+      rpy="0 0 1.57" />
+    <parent
+      link="right_finger_2" />
+    <child
+      link="right_finger_4" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_arm_pitch_1">
+    <inertial>
+      <origin
+        xyz="0.0563960537720042 -0.00421581618218325 -0.00308498551500382"
+        rpy="0 0 0" />
+      <mass
+        value="0.25" />
+      <inertia
+        ixx="6.63634182814664E-05"
+        ixy="4.90870942658596E-06"
+        ixz="-2.53786568905854E-08"
+        iyy="5.33223878294997E-05"
+        iyz="-2.19283370940287E-08"
+        izz="4.28517529016035E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_arm_pitch_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_arm_pitch_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_arm_pitch_1"
+    type="revolute">
+    <origin
+      xyz="0.116 0.1865 0"
+      rpy="0 0 0" />
+    <parent
+      link="body_yaw" />
+    <child
+      link="left_arm_pitch_1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_arm_roll_1">
+    <inertial>
+      <origin
+        xyz="0.000140777229712785 -0.0583657098065791 -0.0197487888218174"
+        rpy="0 0 0" />
+      <mass
+        value="1.1" />
+      <inertia
+        ixx="0.000701761240831805"
+        ixy="-3.51431465633603E-06"
+        ixz="5.6942020708733E-11"
+        iyy="0.000504612119202354"
+        iyz="-3.51430493445918E-06"
+        izz="0.000529608216959758" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_arm_roll_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_arm_roll_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_arm_roll_1"
+    type="revolute">
+    <origin
+      xyz="0.096 -0.0389999999999999 0.021"
+      rpy="0 0 0.2" />
+    <parent
+      link="left_arm_pitch_1" />
+    <child
+      link="left_arm_roll_1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_arm_yaw_1">
+    <inertial>
+      <origin
+        xyz="0.000247765261204902 -0.0551148547502192 -0.00314972358025381"
+        rpy="0 0 0" />
+      <mass
+        value="0.2" />
+      <inertia
+        ixx="4.24955550477809E-05"
+        ixy="1.24798140000992E-06"
+        ixz="4.78884937912915E-08"
+        iyy="5.17567185373698E-05"
+        iyz="-4.10854962925155E-08"
+        izz="2.48384216096678E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_arm_yaw_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_arm_yaw_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_arm_yaw_1"
+    type="revolute">
+    <origin
+      xyz="4.9999999998912E-05 -0.127 -0.01755"
+      rpy="0 0 0" />
+    <parent
+      link="left_arm_roll_1" />
+    <child
+      link="left_arm_yaw_1" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_arm_roll_3">
+    <inertial>
+      <origin
+        xyz="-0.0123837047477098 -0.0372795875392776 -0.0192399267599269"
+        rpy="0 0 0" />
+      <mass
+        value="0.75" />
+      <inertia
+        ixx="0.000484217127507194"
+        ixy="3.3593553945536E-06"
+        ixz="-2.48496705942129E-06"
+        iyy="0.000424604382031725"
+        iyz="-3.02633342092757E-06"
+        izz="0.000274229459852543" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_arm_roll_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_arm_roll_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_arm_roll_3"
+    type="revolute">
+    <origin
+      xyz="0.0299999999999992 -0.0899999999999993 0.021000000000001"
+      rpy="0 0 -0.2" />
+    <parent
+      link="left_arm_yaw_1" />
+    <child
+      link="left_arm_roll_3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_arm_roll_5">
+    <inertial>
+      <origin
+        xyz="2.90652077961084E-08 -0.0669453293365064 -0.0404896128826216"
+        rpy="0 0 0" />
+      <mass
+        value="0.15" />
+      <inertia
+        ixx="0.000130632670491137"
+        ixy="-9.20712241668751E-11"
+        ixz="1.57488653906391E-10"
+        iyy="0.000101199937770544"
+        iyz="3.80953749783574E-06"
+        izz="5.38088223350888E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_arm_roll_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_arm_roll_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_arm_roll_5"
+    type="revolute">
+    <origin
+      xyz="-0.0299999999999981 -0.108000000000004 0.0299999999999949"
+      rpy="0 0 0" />
+    <parent
+      link="left_arm_roll_3" />
+    <child
+      link="left_arm_roll_5" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_thumb_1">
+    <inertial>
+      <origin
+        xyz="0.00145810284227826 -0.0073332815118678 0.00907650373978578"
+        rpy="0 0 0" />
+      <mass
+        value="0.015" />
+      <inertia
+        ixx="2.07595104536584E-07"
+        ixy="-6.73210919906434E-09"
+        ixz="1.34723606752066E-08"
+        iyy="1.87787878100432E-07"
+        iyz="-6.47807337539844E-09"
+        izz="1.97504358541342E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_thumb_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_thumb_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_thumb_1"
+    type="revolute">
+    <origin
+      xyz="0.00018211 -0.086228 0.01974"
+      rpy="1.1055605200 -1.1071525558 -1.5690156715" />
+    <parent
+      link="left_arm_roll_5" />
+    <child
+      link="left_thumb_1" />
+    <axis
+      xyz="0 -0.89443 -0.44721" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_thumb_3">
+    <inertial>
+      <origin
+        xyz="0.000755163100906869 -0.00847836615702019 0.0113666643321317"
+        rpy="0 0 0" />
+      <mass
+        value="0.02" />
+      <inertia
+        ixx="5.30065316792335E-07"
+        ixy="-2.35168117850492E-08"
+        ixz="4.7009157306266E-08"
+        iyy="4.6183299980609E-07"
+        iyz="8.90038953433648E-08"
+        izz="3.28299446805443E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_thumb_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_thumb_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_thumb_3"
+    type="revolute">
+    <origin
+      xyz="0 -0.010733 0.021466"
+      rpy="1.1055605200 -1.1071525558 -1.5690156715" />
+    <parent
+      link="left_thumb_1" />
+    <child
+      link="left_thumb_3" />
+    <axis
+      xyz="0 0.89443 0.44721" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_finger_1">
+    <inertial>
+      <origin
+        xyz="0.00133242639922518 -0.0210003719137298 -0.00399986297686737"
+        rpy="0 0 0" />
+      <mass
+        value="0.04" />
+      <inertia
+        ixx="5.51776941447563E-06"
+        ixy="-2.22301714155117E-07"
+        ixz="1.79922647877871E-11"
+        iyy="3.41570706350436E-06"
+        iyz="2.00642018949223E-11"
+        izz="3.64866535697813E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_finger_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_finger_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_finger_1"
+    type="revolute">
+    <origin
+      xyz="0 -0.111248350851721 -0.0410000000000039"
+      rpy="0 0 -1.57" />
+    <parent
+      link="left_arm_roll_5" />
+    <child
+      link="left_finger_1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="left_finger_3">
+    <inertial>
+      <origin
+        xyz="0.000316276019312944 -0.0247058870634902 -0.00391802249544748"
+        rpy="0 0 0" />
+      <mass
+        value="0.05" />
+      <inertia
+        ixx="1.04186766542221E-05"
+        ixy="-2.88349817342388E-07"
+        ixz="1.11099056026403E-11"
+        iyy="4.81574033207152E-06"
+        iyz="-4.78340404497441E-12"
+        izz="7.89388498501325E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_finger_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/left_finger_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_finger_3"
+    type="revolute">
+    <origin
+      xyz="0 -0.0395000000000001 0"
+      rpy="0 0 -1.57" />
+    <parent
+      link="left_finger_1" />
+    <child
+      link="left_finger_3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="head_yaw">
+    <inertial>
+      <origin
+        xyz="-0.00319061281438124 0.00851526094878885 2.87897011785887E-10"
+        rpy="0 0 0" />
+      <mass
+        value="0.22" />
+      <inertia
+        ixx="8.58129604124346E-06"
+        ixy="-6.46292969661189E-09"
+        ixz="2.37211901967483E-13"
+        iyy="2.16127326930845E-05"
+        iyz="-3.33789690378522E-15"
+        izz="1.7392708401863E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/head_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/head_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="head_yaw"
+    type="continuous">
+    <origin
+      xyz="0 0.2555 0"
+      rpy="0 0 0" />
+    <parent
+      link="body_yaw" />
+    <child
+      link="head_yaw" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="head_pitch">
+    <inertial>
+      <origin
+        xyz="0.0461981070291959 0.0231062681583618 0.00527965132124381"
+        rpy="0 0 0" />
+      <mass
+        value="1.0" />
+      <inertia
+        ixx="0.00011260894236193"
+        ixy="2.31836775002393E-09"
+        ixz="-5.62882400849572E-07"
+        iyy="0.000252700659489136"
+        iyz="1.80236125020725E-07"
+        izz="0.000211544282749322" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/head_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_esr_v2_rev/meshes/head_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="head_pitch"
+    type="revolute">
+    <origin
+      xyz="-0.045 0.039 0"
+      rpy="0 0 0" />
+    <parent
+      link="head_yaw" />
+    <child
+      link="head_pitch" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

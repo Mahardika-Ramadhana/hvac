@@ -23,7 +23,7 @@ items:
           class: BodyItem
           is_checked: true
           data:
-            file: "../urdf/robot_esr_v2.urdf"
+            file: "../urdf/robot_esr_v2_rev.urdf"
             format: URDF
             rootPosition: [ 0, 0, 0 ]
             rootAttitude: [
