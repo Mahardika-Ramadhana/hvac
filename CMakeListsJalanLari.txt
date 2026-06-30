@@ -1,0 +1,55 @@
+cmake_minimum_required(VERSION 3.16)
+project(RobotBesarControllers CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+# Menggunakan Choreonoid 2.5 (lokal di folder Anda)
+list(APPEND CMAKE_PREFIX_PATH "/home/grace/choreonoid_install/share/choreonoid/cmake")
+find_package(Choreonoid REQUIRED)
+
+include("/home/grace/choreonoid_install/share/choreonoid/cmake/ext/ChoreonoidBodyBuildFunctions.cmake")
+
+# ─────────────────────────────────────────────────────────────
+#  Motion-planning library
+#  Compile all RobotContext + per-motion node files together.
+# ─────────────────────────────────────────────────────────────
+set(MOTION_SOURCES
+    RobotContext.cpp
+    BalanceMarkers.cpp
+    JalanDitempat.cpp
+    JalanMaju.cpp
+    Lompat.cpp
+    JalanMundur.cpp
+    HadapKanan90.cpp
+    HadapKiri90.cpp
+    PutarKanan360.cpp
+    PutarKiri360.cpp
+)
+
+# Simple controllers
+choreonoid_add_simple_controller(RobotBesarMinimumController
+    RobotBesarMinimumController.cpp)
+
+choreonoid_add_simple_controller(RobotSeqPlayerController
+    RobotSeqPlayerController.cpp)
+
+choreonoid_add_simple_controller(RobotBesarWalkController
+    RobotBesarWalkController.cpp
+    ${MOTION_SOURCES})
+
+target_link_libraries(RobotBesarWalkController Choreonoid::CnoidBodyPlugin)
+
+# ─── Target Baru Untuk nyobarobotjalan ───
+choreonoid_add_simple_controller(nyobarobotjalan nyobarobotjalan.cpp)
+target_link_libraries(nyobarobotjalan Choreonoid::CnoidBodyPlugin)
+
+# ─── Target Baru Untuk jalan_lari ───
+choreonoid_add_simple_controller(jalan_lari jalan_lari.cpp)
+target_link_libraries(jalan_lari Choreonoid::CnoidBodyPlugin)
+
+include_directories(
+  /home/grace/choreonoid_install/include/choreonoid-2.5
+  /home/grace/choreonoid_install/include/choreonoid-2.5/cnoid/src/BodyPlugin
+  /home/grace/choreonoid_install/include/choreonoid-2.5/cnoid/src/Util)
