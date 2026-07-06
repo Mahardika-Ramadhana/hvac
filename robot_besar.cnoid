@@ -76,7 +76,7 @@ items:
           class: BodyItem
           is_checked: true
           data:
-            file: "${SHARE}/model/field2022/field2022_shorttrack.body"
+            file: "field2022_shorttrack.body"
             format: CHOREONOID-BODY
             rootPosition: [ 0, 0, 0 ]
             rootAttitude: [
