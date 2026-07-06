@@ -1,8 +1,10 @@
-/home/rog/Documents/adi sucipto/robot_besar/robot_esr_v2/project/controller/build/CMakeFiles/RobotBesarMinimumController.dir
-/home/rog/Documents/adi sucipto/robot_besar/robot_esr_v2/project/controller/build/CMakeFiles/RobotBesarWalkController.dir
-/home/rog/Documents/adi sucipto/robot_besar/robot_esr_v2/project/controller/build/CMakeFiles/edit_cache.dir
-/home/rog/Documents/adi sucipto/robot_besar/robot_esr_v2/project/controller/build/CMakeFiles/rebuild_cache.dir
-/home/rog/Documents/adi sucipto/robot_besar/robot_esr_v2/project/controller/build/CMakeFiles/list_install_components.dir
-/home/rog/Documents/adi sucipto/robot_besar/robot_esr_v2/project/controller/build/CMakeFiles/install.dir
-/home/rog/Documents/adi sucipto/robot_besar/robot_esr_v2/project/controller/build/CMakeFiles/install/local.dir
-/home/rog/Documents/adi sucipto/robot_besar/robot_esr_v2/project/controller/build/CMakeFiles/install/strip.dir
+/home/dika/projects/hvac/project/controller/build/CMakeFiles/RobotBesarMinimumController.dir
+/home/dika/projects/hvac/project/controller/build/CMakeFiles/RobotBesarWalkController.dir
+/home/dika/projects/hvac/project/controller/build/CMakeFiles/jalan_lari.dir
+/home/dika/projects/hvac/project/controller/build/CMakeFiles/test_ik.dir
+/home/dika/projects/hvac/project/controller/build/CMakeFiles/edit_cache.dir
+/home/dika/projects/hvac/project/controller/build/CMakeFiles/rebuild_cache.dir
+/home/dika/projects/hvac/project/controller/build/CMakeFiles/list_install_components.dir
+/home/dika/projects/hvac/project/controller/build/CMakeFiles/install.dir
+/home/dika/projects/hvac/project/controller/build/CMakeFiles/install/local.dir
+/home/dika/projects/hvac/project/controller/build/CMakeFiles/install/strip.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -shared -Wl,-soname,jalan_lari.so -o lib/choreonoid-2.4/simplecontroller/jalan_lari.so CMakeFiles/jalan_lari.dir/jalan_lari.cpp.o  -Wl,-rpath,/home/dika/choreonoid/build/lib: /home/dika/choreonoid/build/lib/libCnoidBody.so /home/dika/choreonoid/build/lib/libCnoidUtil.so -lfmt -lstdc++fs 

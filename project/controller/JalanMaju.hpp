@@ -11,8 +11,7 @@ double nodeJalanMaju(RobotContext& robot,
                      double freezeX,
                      double startY,
                      double startYaw,
-                     double rootYSign,
-                     double speed,
-                     double rootRampDur);
+                     double stepY,
+                     double cycleTime);
 
 #endif

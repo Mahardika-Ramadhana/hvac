@@ -1,0 +1,10 @@
+ project/controller/JalanMaju.cpp                   | 197 +++--
+ project/controller/JalanMaju.hpp                   |   5 +-
+ project/controller/RobotBesarWalkController.cpp    |  60 +-
+ project/controller/RobotContext.cpp                |  46 +-
+ project/controller/RobotContext.hpp                |  10 +-
+ .../3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp    | 791 ---------------------
+ project/controller/jalan_lari.cpp                  | 474 +++++++++---
+ robot_besar.cnoid                                  | 315 ++++++--
+ urdf/robot_esr_v2_rev.urdf                         |  44 ++
+ 9 files changed, 892 insertions(+), 1050 deletions(-)

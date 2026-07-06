@@ -1,0 +1,55 @@
+QOpenGLWidget is not supported on this platform.
+The Eigen library version 3.4.0 is used (SIMD intruction sets in use: SSE, SSE2).
+Body customizer "/home/dika/choreonoid/build/lib/choreonoid-2.4/customizer/Labo1Customizer.so" for Labo1 has been loaded.
+Body customizer "/home/dika/choreonoid/build/lib/choreonoid-2.4/customizer/SpringModelCustomizer.so" for CustomizedSpringModel has been loaded.
+Body-plugin has been activated.
+Assimp-plugin has been activated.
+GLVisionSimulator-plugin has been activated.
+MarkerVisualizer-plugin has been activated.
+NVIDIA PhysX 5.6.1 is available.
+PhysX-plugin has been activated.
+Python-plugin has been activated.
+PythonSimScript-plugin has been activated.
+URDF-plugin has been activated.
+Loading project file "../../../robot_besar.cnoid" ...
+Restoring WorldItem "World"
+Restoring BodyItem "robot_esr_v2"
+Loading Body "/home/dika/projects/hvac/urdf/robot_esr_v2_rev.urdf"
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+Warning: failed to add material named "".
+ -> ok!
+2 / 2 item(s) have been loaded.
+Project "../../../robot_besar.cnoid" has been completely loaded.
+There is no simulator item.

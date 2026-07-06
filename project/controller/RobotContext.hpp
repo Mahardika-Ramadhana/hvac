@@ -7,11 +7,13 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
+#include <memory>
 
 // Choreonoid
 #include <cnoid/SimpleController>
 #include <cnoid/Body>
 #include <cnoid/Link>
+#include <cnoid/JointPath>
 
 using namespace cnoid;
 
@@ -83,6 +85,12 @@ struct RobotContext
     Link* body_pitch = nullptr;
     Link* body_yaw   = nullptr;
 
+    // ── IK paths ────────────────────────────────────────────
+    std::shared_ptr<cnoid::JointPath> ikRightLeg;
+    std::shared_ptr<cnoid::JointPath> ikLeftLeg;
+    cnoid::Matrix3 rFootRot0;
+    cnoid::Matrix3 lFootRot0;
+
     // ── head ────────────────────────────────────────────────
     Link* head_yaw   = nullptr;
     Link* head_pitch = nullptr;
@@ -105,7 +113,7 @@ struct RobotContext
                            double keepYaw = 0.0);
     void   keepYawNeutral();
 
-    static constexpr double STAND_ROOT_Z = 0.81;
+    static constexpr double STAND_ROOT_Z = 0.474;
     static double clamp01(double x);
     static double smoothstep(double x);
     static double blend(double from, double to, double s);

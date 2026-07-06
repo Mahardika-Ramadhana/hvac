@@ -115,6 +115,16 @@ bool RobotContext::initialize(SimpleControllerIO* io)
     dump("body_p   ", body_pitch);
     dump("body_yaw ", body_yaw);
 
+    Link* realBase = body->link("base_link");
+    if(realBase && r_ankle_roll && l_ankle_roll) {
+        ikRightLeg = JointPath::getCustomPath(realBase, r_ankle_roll);
+        ikLeftLeg = JointPath::getCustomPath(realBase, l_ankle_roll);
+        rFootRot0 = realBase->R().transpose() * r_ankle_roll->R();
+        lFootRot0 = realBase->R().transpose() * l_ankle_roll->R();
+    } else {
+        std::cerr << "Failed to find base_link or ankle_roll for IK!" << std::endl;
+    }
+
     return true;
 }
 
@@ -179,30 +189,36 @@ void RobotContext::applyStandPose(bool setActualQ,
         j->q_target() = v;
     };
 
+    // Virtual root joints – only present in robot_esr_v2.urdf (with virtual joints).
+    // In robot_esr_v2_rev.urdf the root is a free-floating link handled by physics.
     set(root_x,   keepX);
     set(root_y,   keepY);
     set(root_z,   STAND_ROOT_Z);
     set(root_yaw, keepYaw);
 
-    set(r_leg_yaw,  0.0);
-    set(r_hip_roll, 0.0);
-    set(r_hip,     -0.04);
-    set(r_knee,     0.04);
-    set(r_ankle,    0.08);
-    set(r_ankle_roll, 0.0);
-
-    set(l_leg_yaw,  0.0);
-    set(l_hip_roll, 0.0);
-    set(l_hip,      0.04);
-    set(l_knee,    -0.04);
-    set(l_ankle,   -0.08);
-    set(l_ankle_roll, 0.0);
-
     set(body_pitch, 0.05);
     set(body_yaw,   0.0);
 
-    set(r_arm,  0.1);
-    set(l_arm,  0.1);
+    // Stand pose: joint angles pre-computed by robot designer (from .cnoid jointDisplacements)
+    // to achieve floor contact when root is at world Z=0.38.
+    // Right leg: yaw=0, roll=0, pitch2=-0.04, pitch4=+0.04, pitch6=+0.08, roll6=0
+    // Left leg:  yaw=0, roll=0, pitch1=+0.04, pitch3=-0.04, pitch5=-0.08, roll5=0
+    set(r_leg_yaw,   0.0);
+    set(r_hip_roll,  0.0);
+    set(r_hip,      -0.04);   // right_knee_pitch_2
+    set(r_knee,      0.04);   // right_knee_pitch_4
+    set(r_ankle,     0.08);   // right_knee_pitch_6
+    set(r_ankle_roll, 0.0);
+
+    set(l_leg_yaw,   0.0);
+    set(l_hip_roll,  0.0);
+    set(l_hip,       0.04);   // left_knee_pitch_1
+    set(l_knee,     -0.04);   // left_knee_pitch_3
+    set(l_ankle,    -0.08);   // left_knee_pitch_5
+    set(l_ankle_roll, 0.0);
+
+    set(r_arm,  0.25);
+    set(l_arm,  0.25);
     set(head_yaw,   0.0);
     set(head_pitch, 0.0);
 

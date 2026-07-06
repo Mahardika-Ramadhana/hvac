@@ -1,79 +1,126 @@
 #include "JalanMaju.hpp"
+#include "RobotContext.hpp"
+#include <iostream>
+#include <cmath>
+#include <cnoid/JointPath>
 
-double nodeJalanMaju(RobotContext& robot,
-                     double t,
-                     double duration,
-                     double freezeX,
-                     double startY,
-                     double startYaw,
-                     double rootYSign,
-                     double speed,
-                     double rootRampDur)
+using namespace cnoid;
+
+// Stand pose angles matching .cnoid jointDisplacements (designed for floor contact at Z=0.38)
+static void applyDirectStandAngles(RobotContext& robot)
 {
-    const double stepTime = 1.20;
-    const double w = 2.0 * M_PI / stepTime;
+    auto tgt = [](Link* j, double v){ if(j) j->q_target() = v; };
+    tgt(robot.r_leg_yaw,    0.0);
+    tgt(robot.r_hip_roll,   0.0);
+    tgt(robot.r_hip,       -0.04);
+    tgt(robot.r_knee,       0.04);
+    tgt(robot.r_ankle,      0.08);
+    tgt(robot.r_ankle_roll, 0.0);
 
-    const double s = std::sin(w * t);
-    const double c = std::cos(w * t);
+    tgt(robot.l_leg_yaw,    0.0);
+    tgt(robot.l_hip_roll,   0.0);
+    tgt(robot.l_hip,        0.04);
+    tgt(robot.l_knee,      -0.04);
+    tgt(robot.l_ankle,     -0.08);
+    tgt(robot.l_ankle_roll, 0.0);
+}
 
-    const double rightPhase = s;
-    const double leftPhase  = s;
+double nodeJalanMaju(RobotContext& robot, double localT, double duration,
+                     double freezeX, double startY, double startYaw, double stepY, double cycleTime)
+{
+    double phase = fmod(localT, cycleTime) / cycleTime; // 0 to 1
 
-    const double rightLift = std::max(0.0, rightPhase);
-    const double leftLift  = std::max(0.0, leftPhase);
+    double stepLength = stepY;
+    double stepHeight = 0.04; // Slightly reduced for stability
+    double swayAmp    = 0.09; // 9cm perfectly shifts CoM over the support foot (0.03 +- 0.09 = 0.12 and -0.06)
 
-    const double liftGamma = 0.58;
-    const double rightLiftPow = std::pow(rightLift, liftGamma);
-    const double leftLiftPow  = std::pow(leftLift, liftGamma);
+    // Actual foot positions in base frame (from IK INIT debug):
+    // Right: (-0.0627, -0.0341, -0.3311)  Left: (0.1233, -0.0118, -0.3489)
+    // Use Z slightly above these to keep knee bent during walk
+    // Use Z slightly above these to keep knee bent during walk
+    const double FOOT_Z       = -0.3489;
+    Vector3 rFootNeutral(-0.0626, -0.034, FOOT_Z);
+    Vector3 lFootNeutral( 0.1233, -0.012, FOOT_Z);
 
-    // ─── amplitudes (walk forward = slightly bigger than in-place) ───
-    const double hipAmp   = 0.40;
-    const double kneeAmp  = 0.30;
-    const double ankleAmp = 0.09;
+    Vector3 rTarget = rFootNeutral;
+    Vector3 lTarget = lFootNeutral;
 
-    const double armAmp   = 0.42;
-    const double bodyAmp  = 0.012;
 
-    // Translate root forward.  Positive Y is forward in world frame
-    // after the FORWARD_SIGN convention applied below.
-    // State-continuity mode:
-    // gerak maju dimulai dari startY, bukan dari koordinat 0.
-    const double yCmd = startY + rootYSign *
-                        RobotContext::forwardRootY(t, speed, rootRampDur, duration);
+    // Lateral sway — shifts targets in X so CoM stays over support foot
+    double sway = -sin(phase * 2.0 * M_PI) * swayAmp;
+    rTarget.x() += sway;
+    lTarget.x() += sway;
 
-    robot.setRoot(freezeX, yCmd, 0.0, startYaw);
-    robot.keepYawNeutral();
-    if(robot.root_yaw){ robot.root_yaw->q_target() = startYaw; }
+    // Step motion
+    double rStep = 0, lStep = 0, rLift = 0, lLift = 0;
+    if (phase < 0.5) {
+        double sub = phase * 2.0;
+        rStep = -stepLength/2.0 + stepLength * sub;
+        lStep =  stepLength/2.0 - stepLength * sub;
+        rLift = sin(sub * M_PI) * stepHeight;
+    } else {
+        double sub = (phase - 0.5) * 2.0;
+        lStep = -stepLength/2.0 + stepLength * sub;
+        rStep =  stepLength/2.0 - stepLength * sub;
+        lLift = sin(sub * M_PI) * stepHeight;
+    }
 
-    // ── RIGHT LEG ──
-    robot.setTarget(robot.r_hip,
-                    robot.q0of(robot.r_hip) + hipAmp * rightPhase);
-    robot.setTarget(robot.r_knee,
-                    robot.q0of(robot.r_knee) + kneeAmp * rightLiftPow);
-    robot.setTarget(robot.r_ankle,
-                    robot.q0of(robot.r_ankle)
-                    - ankleAmp * rightPhase
-                    - ankleAmp * 0.22 * rightLiftPow);
+    rTarget.y() -= rStep;
+    rTarget.z() += rLift;
+    lTarget.y() -= lStep;
+    lTarget.z() += lLift;
 
-    // ── LEFT LEG ──
-    robot.setTarget(robot.l_hip,
-                    robot.q0of(robot.l_hip) + hipAmp * leftPhase);
-    robot.setTarget(robot.l_knee,
-                    robot.q0of(robot.l_knee) + kneeAmp * leftLiftPow);
-    robot.setTarget(robot.l_ankle,
-                    robot.q0of(robot.l_ankle)
-                    - ankleAmp * leftPhase
-                    - ankleAmp * 0.22 * leftLiftPow);
+    // Update forward kinematics so IK Jacobian is based on current state
+    robot.body->calcForwardKinematics();
 
-    // ── arms ──
-    robot.setTarget(robot.l_arm,
-                    robot.q0of(robot.l_arm) - armAmp * rightPhase);
-    robot.setTarget(robot.r_arm,
-                    robot.q0of(robot.r_arm) - armAmp * leftPhase);
+    bool ikOk = false;
+    if (robot.ikRightLeg && robot.ikLeftLeg) {
+        cnoid::Isometry3 T_r;
+        T_r.linear() = robot.rFootRot0;
+        T_r.translation() = rTarget;
+        bool rOk = robot.ikRightLeg->calcInverseKinematics(T_r);
 
-    // ── body lean slightly into stride ──
-    robot.setTarget(robot.body_pitch,
-                    robot.q0of(robot.body_pitch) + 0.03 + bodyAmp * c);
+        cnoid::Isometry3 T_l;
+        T_l.linear() = robot.lFootRot0;
+        T_l.translation() = lTarget;
+        bool lOk = robot.ikLeftLeg->calcInverseKinematics(T_l);
+        ikOk = rOk && lOk;
 
-    return yCmd;
+        // Print IK result every 1s (phase near 0)
+        static double lastPrint = -1.0;
+        if (localT - lastPrint > 1.0) {
+            lastPrint = localT;
+            std::cout << "[IK] t=" << localT
+                      << " rOk=" << rOk << " lOk=" << lOk
+                      << " rTarget=(" << rTarget.transpose() << ")"
+                      << " lTarget=(" << lTarget.transpose() << ")" << std::endl;
+        }
+
+        if (rOk) {
+            for (int i = 0; i < robot.ikRightLeg->numJoints(); ++i) {
+                Link* j = robot.ikRightLeg->joint(i);
+                robot.setTarget(j, j->q());
+            }
+        }
+        if (lOk) {
+            for (int i = 0; i < robot.ikLeftLeg->numJoints(); ++i) {
+                Link* j = robot.ikLeftLeg->joint(i);
+                robot.setTarget(j, j->q());
+            }
+        }
+    }
+
+    // Fallback: if IK failed, use direct stand angles
+    if (!ikOk) {
+        applyDirectStandAngles(robot);
+    }
+
+    // Arm swing (anti-phase with legs)
+    if (robot.l_arm) robot.l_arm->q_target() = 0.25 + lStep * 4.0;
+    if (robot.r_arm) robot.r_arm->q_target() = 0.25 + rStep * 4.0;
+
+    // Slight forward body lean during walk
+    if (robot.body_pitch) robot.body_pitch->q_target() = 0.05;
+
+    return startY + (duration / cycleTime) * stepLength;
 }

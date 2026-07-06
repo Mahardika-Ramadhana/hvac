@@ -21,58 +21,58 @@ links:
         elements: 
           - 
             type: Resource
-            uri: "2023_hvac_stage.obj"
+            uri: "${SHARE}/model/field2023/2023_hvac_stage.obj"
       - 
         type: Collision
         elements: 
           - 
             type: Resource
-            uri: "field2023_athletics-cliff-1.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-cliff-1.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-curve-1.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-curve-1.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-goal0-1.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-goal0-1.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-goal1-1.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-goal1-1.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-goal1-2.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-goal1-2.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-goal1-3.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-goal1-3.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-intermediate_step-2.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-intermediate_step-2.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-intermediate_step-3.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-intermediate_step-3.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-slope-1.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-slope-1.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-stair-1.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-stair-1.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-start0-1.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-start0-1.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-start1-2.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-start1-2.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-step_right-1.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-step_right-1.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-step_right-2.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-step_right-2.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-step_right-3.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-step_right-3.STL"
           - 
             type: Resource
-            uri: "field2023_athletics-step_right-4.obj"
+            uri: "${SHARE}/model/field2023/field2023_athletics-step_right-4.STL"
   - 
     name: "Prop1"
     parent: Base
@@ -92,7 +92,7 @@ links:
           - 
             type: Resource
             name: mesh1
-            uri: "2023_hvac_stage_frame1.obj"
+            uri: "${SHARE}/model/field2023/2023_hvac_stage_frame1.obj"
   - 
     name: "Link1"
     parent: Prop1
@@ -119,7 +119,7 @@ links:
             elements: 
               - &A0 
                 type: Resource
-                uri: "link1.obj"
+                uri: "${SHARE}/model/field2023/link1.STL"
       - 
         type: Collision
         elements: 
@@ -161,7 +161,7 @@ links:
             elements: 
               - 
                 type: Resource
-                uri: "movable_plate.obj"
+                uri: "${SHARE}/model/field2023/movable_plate.STL"
       - 
         type: Collision
         elements: 
@@ -196,7 +196,7 @@ links:
           - 
             type: Resource
             name: mesh1
-            uri: "2023_hvac_stage_frame2.obj"
+            uri: "${SHARE}/model/field2023/2023_hvac_stage_frame2.obj"
   - 
     name: "Link2"
     parent: Prop2
@@ -256,7 +256,7 @@ links:
           - 
             type: Resource
             name: mesh1
-            uri: "2023_hvac_stage_frame3.obj"
+            uri: "${SHARE}/model/field2023/2023_hvac_stage_frame3.obj"
   - 
     name: "Link3"
     parent: Prop3
@@ -316,7 +316,7 @@ links:
           - 
             type: Resource
             name: mesh1
-            uri: "2023_hvac_stage_frame4.obj"
+            uri: "${SHARE}/model/field2023/2023_hvac_stage_frame4.obj"
   - 
     name: "Link4"
     parent: Prop4

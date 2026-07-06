@@ -1,3 +1,4 @@
+#include <cnoid/JointPath>
 // =====================================================================
 //  RobotBesarWalkController — master motion dispatcher for robot_esr_v2
 //
@@ -38,6 +39,7 @@
 #include "PutarKanan360.hpp"
 #include "PutarKiri360.hpp"
 #include "Lompat.hpp"
+#include "sensors/SensorManager.hpp"
 
 using namespace cnoid;
 
@@ -107,6 +109,8 @@ private:
     double t = 0.0;
     double dt = 0.0;
 
+    std::unique_ptr<sensors::SensorManager> sensorManager_;
+
     double freezeX = 0.0;
     double freezeY = 0.0;
     double freezeYaw = 0.0;
@@ -160,11 +164,11 @@ private:
     const double T_DIAM_AKHIR      = 4.0;   // recovery stand after jump
 
     // ─────────────────────────────────────────────────────────
-    //  MOTION PARAMETERS
+    //  MOTION PARAMETERS (TUNED FOR RUNNING SHORT TRACK)
     // ─────────────────────────────────────────────────────────
     const double rootYSign   = -1.0;
-    const double walkSpeed   = 0.045; //stabil di 0.045
-    const double rootRampDur = 1.5;
+    const double walkSpeed   = 0.25; // Kecepatan lari stabil
+    const double cycleTime   = 0.5;  // Siklus lari yang stabil
 
 public:
     bool configure(SimpleControllerConfig* config) override
@@ -211,6 +215,23 @@ public:
 
         // Start already standing on the floor (matches .cnoid initial pose).
         robot.applyStandPose(true);
+        robot.body->calcForwardKinematics();
+
+        // Recalculate foot orientations using actual stand pose (not q=0 default)
+        {
+            auto* base = robot.body->link("base_link");
+            if(base && robot.r_ankle_roll && robot.l_ankle_roll) {
+                robot.rFootRot0 = base->R().transpose() * robot.r_ankle_roll->R();
+                robot.lFootRot0 = base->R().transpose() * robot.l_ankle_roll->R();
+                cnoid::Vector3 rPos = robot.r_ankle_roll->p() - base->p();
+                cnoid::Vector3 lPos = robot.l_ankle_roll->p() - base->p();
+                std::cout << "[IK INIT] Right Foot Pos in base frame: " << rPos.transpose() << std::endl;
+                std::cout << "[IK INIT] Left  Foot Pos in base frame: " << lPos.transpose() << std::endl;
+                std::cout << "[IK INIT] rFootRot0 recalculated from stand pose." << std::endl;
+            } else {
+                std::cout << "[IK INIT] WARNING: base_link or ankle_roll not found!" << std::endl;
+            }
+        }
 
         // ── Set actuation mode + enable IO ──────────────────
         // ForwardDynamicsPID simulator applies high-gain PID internally
@@ -222,9 +243,14 @@ public:
                 (int)Link::JointDisplacement |
                 (int)Link::JointVelocity |
                 (int)Link::LinkContactState;
-            const int N = robot.body->numJoints();
-            for(int i = 0; i < N; ++i){
+            std::cout << "Jumlah joint: " << robot.body->numJoints() << "\n";
+            for(int i = 0; i < robot.body->numJoints(); ++i){
                 Link* j = robot.body->joint(i);
+                if(!j) {
+                    std::cerr << "[WARNING] Joint " << i << " is null!" << std::endl;
+                    continue;
+                }
+                std::cout << "Joint " << i << ": " << j->name() << " = " << j->q() << "\n";
                 j->setActuationMode(Link::JointDisplacement);
                 io_->enableInput(j, inputFlags);
                 io_->enableOutput(j);
@@ -258,6 +284,13 @@ public:
                   << "  freezeYaw = " << freezeYaw
                   << "  root_z (forced) = "
                   << (robot.root_z ? robot.root_z->q() : 0.0) << std::endl;
+
+        sensors::SensorConfig sConfig;
+        sConfig.enableLogging = true;
+        sensorManager_ = std::make_unique<sensors::SensorManager>(sConfig);
+        if(!sensorManager_->initialize(io_, robot)) {
+            std::cerr << "[Warning] SensorManager initialization had missing sensors (likely IMU)." << std::endl;
+        }
 
         return true;
     }
@@ -296,6 +329,7 @@ public:
                       << std::endl;
             for(int i = 0; i < N; ++i){
                 Link* j = robot.body->joint(i);
+                if(!j) continue;
                 qPrev[i] = j->q();
                 qAtStart[i] = j->q();
                 j->q_target() = j->q();
@@ -338,27 +372,26 @@ public:
         }
         if(!dispatched &&
            isActiveWindow(USE_JALAN_TEMPAT, cursor, T_JALAN_TEMPAT, localT)){
-            nodeJalanDitempat(robot, localT, freezeX, freezeY, freezeYaw);
+            nodeJalanMaju(robot, localT, T_JALAN_TEMPAT, freezeX, freezeY, freezeYaw, 0.0, 2.0); // stepY = 0, cycle = 2.0s
             dispatched = true;
         }
         if(!dispatched &&
            isActiveWindow(USE_JALAN_MAJU, cursor, T_JALAN_MAJU, localT)){
-            yAfterMaju = nodeJalanMaju(
-                robot, localT, T_JALAN_MAJU,
-                freezeX, freezeY, freezeYaw, rootYSign, walkSpeed, rootRampDur);
+            double ramp = std::min(localT / 2.0, 1.0); // Smooth acceleration
+            yAfterMaju = nodeJalanMaju(robot, localT, T_JALAN_MAJU,
+                                       freezeX, freezeY, freezeYaw,
+                                       rootYSign * walkSpeed * ramp, cycleTime); // cycleTime = 0.4s (fast run)
             dispatched = true;
         } else if(USE_JALAN_MAJU){
-            yAfterMaju = freezeY + rootYSign *
-                         RobotContext::forwardRootY(T_JALAN_MAJU, walkSpeed,
-                                                    rootRampDur, T_JALAN_MAJU);
+            yAfterMaju = freezeY + (T_JALAN_MAJU / 2.0) * 0.10;
         } else {
             yAfterMaju = freezeY;
         }
         if(!dispatched &&
            isActiveWindow(USE_JALAN_MUNDUR, cursor, T_JALAN_MUNDUR, localT)){
-            yAfterMundur = nodeJalanMundur(
+            yAfterMundur = nodeJalanMaju(
                 robot, localT, T_JALAN_MUNDUR,
-                freezeX, yAfterMaju, freezeYaw, rootYSign, walkSpeed, rootRampDur);
+                freezeX, yAfterMaju, freezeYaw, -0.10, 2.0); // stepY = -10cm, cycle = 2.0s
             dispatched = true;
         } else if(!dispatched){
             yAfterMundur = yAfterMaju;
@@ -415,8 +448,9 @@ public:
 
         // Hold phases: paksa pose berdiri penuh di floor (q + q_target).
         if(isHolding){
-            robot.applyStandPose(true, holdX, holdY, holdYaw);// aslinya true
-            robot.lockRootOnFloor(true, holdX, holdY, holdYaw);
+            // setActualQ=false: only update q_target, let physics handle actual q
+            robot.applyStandPose(false, holdX, holdY, holdYaw);
+            robot.lockRootOnFloor(false, holdX, holdY, holdYaw);
         } else if(floorMode && !isJumping && robot.root_z){
             robot.root_z->q_target() = RobotContext::STAND_ROOT_Z;
         }
@@ -431,6 +465,7 @@ public:
             const int N = robot.body->numJoints();
             for(int i = 0; i < N; ++i){
                 Link* j = robot.body->joint(i);
+                if(!j) continue;
                 const double q  = j->q();
                 const double qt = j->q_target();
                 qErrInt[i] += (qt - q) * dt;
@@ -446,14 +481,22 @@ public:
         {
             const int N = robot.body->numJoints();
             for(int i = 0; i < N; ++i){
-                qPrev[i] = robot.body->joint(i)->q();
+                Link* j = robot.body->joint(i);
+                if(j) qPrev[i] = j->q();
             }
         }
 
         // ─────────────────────────────────────────────────────
-        //  Periodic status dump – joint states & torques
         // ─────────────────────────────────────────────────────
         ++tickCount;
+
+        if (sensorManager_) {
+            sensorManager_->update(t);
+            if(verbose && (tickCount % printEvery) == 0){
+                sensorManager_->printDebugLog();
+            }
+        }
+
         if(verbose && (tickCount % printEvery) == 0){
             printJointStates(bm);
         }
